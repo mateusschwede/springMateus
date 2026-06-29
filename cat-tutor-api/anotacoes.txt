@@ -142,4 +142,4 @@ project-root
 
 
 
-PAREI NO cat/service/AdoptCatService.kt, ChatGPT: https://chatgpt.com/share/6a3fff19-08a8-83e9-a998-7686a455e683
+PAREI NO TutorGender.kt, ChatGPT: https://chatgpt.com/share/6a3fff19-08a8-83e9-a998-7686a455e683
