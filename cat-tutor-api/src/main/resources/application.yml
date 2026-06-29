@@ -4,9 +4,15 @@ spring:
     username: app_user
     password: app_password
     driver-class-name: oracle.jdbc.OracleDriver
+
   jpa:
     hibernate:
       ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+
 jwt:
   secret: change-me
   expiration: 86400000
