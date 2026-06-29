@@ -1,0 +1,145 @@
+Projeto Spring Kotlin com funções de CRUD para gato, tutor e também adoção de gato, onde que a adoção do gato é necessário ter um tutor previamente cadastrado. Será utilizado JWT e banco de dados de container Oracle. Estrutura do projeto:
+
+project-root
+├── build.gradle.kts
+├── settings.gradle.kts
+│
+├── src
+│   └── main
+│       ├── kotlin
+│       │   └── com
+│       │       └── whateverer
+│       │           ├── Application.kt
+│       │           │
+│       │           ├── config
+│       │           │   ├── SecurityConfig.kt
+│       │           │   ├── JwtConfig.kt
+│       │           │   ├── JacksonConfig.kt
+│       │           │   └── CorsConfig.kt
+│       │           │
+│       │           ├── security
+│       │           │   ├── filter
+│       │           │   │   └── JwtAuthenticationFilter.kt
+│       │           │   │
+│       │           │   ├── provider
+│       │           │   │   └── JwtTokenProvider.kt
+│       │           │   │
+│       │           │   ├── service
+│       │           │   │   └── CustomUserDetailsService.kt
+│       │           │   │
+│       │           │   ├── model
+│       │           │   │   └── UserPrincipal.kt
+│       │           │   │
+│       │           │   └── handler
+│       │           │       ├── JwtAuthenticationEntryPoint.kt
+│       │           │       └── JwtAccessDeniedHandler.kt
+│       │           │
+│       │           ├── exception
+│       │           │   ├── GlobalExceptionHandler.kt
+│       │           │   ├── BusinessException.kt
+│       │           │   ├── ResourceNotFoundException.kt
+│       │           │   ├── UnauthorizedException.kt
+│       │           │   └── ErrorResponse.kt
+│       │           │
+│       │           └── feature
+│       │
+│       │               ├── auth
+│       │               │   ├── controller
+│       │               │   │   └── AuthController.kt
+│       │               │   │
+│       │               │   ├── model
+│       │               │   │   ├── dto
+│       │               │   │   │   ├── LoginRequest.kt
+│       │               │   │   │   ├── LoginResponse.kt
+│       │               │   │   │   └── RefreshTokenRequest.kt
+│       │               │   │   │
+│       │               │   │   └── entity
+│       │               │   │       ├── UserEntity.kt
+│       │               │   │       └── Role.kt
+│       │               │   │
+│       │               │   ├── repository
+│       │               │   │   └── UserRepository.kt
+│       │               │   │
+│       │               │   ├── service
+│       │               │   │   ├── AuthService.kt
+│       │               │   │   ├── LoginService.kt
+│       │               │   │   └── TokenService.kt
+│       │               │   │
+│       │               │   └── utils
+│       │               │       ├── AuthMapper.kt
+│       │               │       └── AuthValidator.kt
+│       │               │
+│       │               ├── cat
+│       │               │   ├── controller
+│       │               │   │   ├── CatController.kt
+│       │               │   │   └── CatAdoptionController.kt
+│       │               │   │
+│       │               │   ├── model
+│       │               │   │   ├── dto
+│       │               │   │   │   ├── CreateCatRequest.kt
+│       │               │   │   │   ├── UpdateCatRequest.kt
+│       │               │   │   │   ├── CatResponse.kt
+│       │               │   │   │   ├── CatSummaryResponse.kt
+│       │               │   │   │   ├── AdoptCatRequest.kt
+│       │               │   │   │   └── RemoveAdoptionRequest.kt
+│       │               │   │   │
+│       │               │   │   └── entity
+│       │               │   │       ├── CatEntity.kt
+│       │               │   │       └── CatStatus.kt
+│       │               │   │
+│       │               │   ├── repository
+│       │               │   │   └── CatRepository.kt
+│       │               │   │
+│       │               │   ├── service
+│       │               │   │   ├── CatService.kt
+│       │               │   │   ├── CreateCatService.kt
+│       │               │   │   ├── UpdateCatService.kt
+│       │               │   │   ├── DeleteCatService.kt
+│       │               │   │   ├── GetCatService.kt
+│       │               │   │   ├── ListCatService.kt
+│       │               │   │   ├── AdoptCatService.kt
+│       │               │   │   └── RemoveAdoptionService.kt
+│       │               │   │
+│       │               │   └── utils
+│       │               │       ├── CatMapper.kt
+│       │               │       ├── CatValidator.kt
+│       │               │       └── CatUtils.kt
+│       │               │
+│       │               └── tutor
+│       │                   ├── controller
+│       │                   │   └── TutorController.kt
+│       │                   │
+│       │                   ├── model
+│       │                   │   ├── dto
+│       │                   │   │   ├── CreateTutorRequest.kt
+│       │                   │   │   ├── UpdateTutorRequest.kt
+│       │                   │   │   ├── TutorResponse.kt
+│       │                   │   │   ├── TutorSummaryResponse.kt
+│       │                   │   │   └── TutorWithCatsResponse.kt
+│       │                   │   │
+│       │                   │   └── entity
+│       │                   │       ├── TutorEntity.kt
+│       │                   │       └── TutorGender.kt
+│       │                   │
+│       │                   ├── repository
+│       │                   │   └── TutorRepository.kt
+│       │                   │
+│       │                   ├── service
+│       │                   │   ├── TutorService.kt
+│       │                   │   ├── CreateTutorService.kt
+│       │                   │   ├── UpdateTutorService.kt
+│       │                   │   ├── DeleteTutorService.kt
+│       │                   │   ├── GetTutorService.kt
+│       │                   │   └── ListTutorService.kt
+│       │                   │
+│       │                   └── utils
+│       │                       ├── TutorMapper.kt
+│       │                       ├── TutorValidator.kt
+│       │                       └── TutorUtils.kt
+│       │
+│       └── resources
+│           └──  application.yml
+
+
+
+PAREI NO cat/service/AdoptCatService.kt, ChatGPT: https://chatgpt.com/share/6a3fff19-08a8-83e9-a998-7686a455e683
